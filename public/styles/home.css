@@ -1,0 +1,36 @@
+#home {
+    width: auto;
+    padding-right: 15px;
+    padding-top: 10em;
+    justify-content: right;
+    padding-left: 10px;
+    position: relative;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+#home .home-message {
+    display: inline-block;
+    z-index: 999;
+    margin: 0 auto;
+    left: 0;
+    top: 40%;
+    text-align: left;
+    width: 70%
+}
+
+.home-message h2 {
+    color: #ffffff;
+    font-size: 200%;
+    text-shadow: none;
+    line-height: 1;
+    font-weight: 700;
+    text-align: left;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-shadow: 0 6px 4.8px rgba(0, 0, 0, 0.3);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
