@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useForm } from "../../hooks/useForm";
 
 export const CreateProperty = ({
     onSubmitHandler
 }) => {
 
-    const [values, setValues] = useState({
+    const {values, onChangeHandler, onSubmit} = useForm({
         propertyName: '',
         location: '',
         price: '',
@@ -13,16 +13,8 @@ export const CreateProperty = ({
         bedrooms: '',
         floor: '',
         description: ''
-    });
+    }, onSubmitHandler);
 
-    const onChangeHandler = (e) => {
-        setValues(state => ({...state, [e.target.name]: e.target.value}));
-    }
-    const onSubmit = (e) => {
-        e.preventDefault();
-
-        onSubmitHandler(values);
-    }
 
     return (
         <section id="create-page" className="auth">

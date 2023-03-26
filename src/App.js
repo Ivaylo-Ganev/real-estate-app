@@ -25,8 +25,7 @@ function App() {
     const onSubmitHandler = async (data) => {
         const newProperty = await propertyService.create(data);
 
-        setProperties(state => [{...state, newProperty}]);
-        console.log(newProperty)
+        setProperties(state => [...state, newProperty]);
         navigate("/catalog");
     }
 

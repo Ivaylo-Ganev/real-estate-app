@@ -12,7 +12,7 @@ export const Login = () => {
                 <input type="password" id="login-password" name="password"/>
                 <input type="submit" className="btn submit" value="Sign in"/>
                 <p className="field">
-                    <span>If you don't have a profile sign up <a href="#">here</a></span>
+                    <span>If you don't have a profile sign up <a href="/register">here</a></span>
                 </p>
             </div>
         </form>
