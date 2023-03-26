@@ -5,7 +5,7 @@ export const PropertyDetails = () => {
         <div className="info-section">
 
             <div className="property-header">
-                <img className="property-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJteI2QI70u9fA89Ud2rV_GHgPPSfERtE7Ow&usqp=CAU" />
+                <img className="property-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJteI2QI70u9fA89Ud2rV_GHgPPSfERtE7Ow&usqp=CAU" alt="property"/>
                 <h1>Teremok</h1>
                
                 <h3>Location: Obzor</h3>

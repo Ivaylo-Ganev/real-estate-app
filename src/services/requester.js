@@ -3,7 +3,9 @@ const requester = async (method, url, data) => {
     const options = {};
     if (data) {
         options.method = method;
-        options.headers["content-type"] = "application/json";
+        options.headers = {
+            "content-type": "application/json"
+        };
         options.body = JSON.stringify(data);
     }
 

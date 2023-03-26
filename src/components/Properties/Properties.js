@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { PropertyCard } from "./PropertyCard";
 
 export const Properties = ({

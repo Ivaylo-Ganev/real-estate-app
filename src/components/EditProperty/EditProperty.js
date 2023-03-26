@@ -5,8 +5,8 @@ export const EditProperty = () => {
             <div className="container">
 
                 <h1>Edit Property</h1>
-                <label htmlFor="name">Property name:</label>
-                <input type="text" id="name" name="name" placeholder="Enter property name..."/>
+                <label htmlFor="propertyName">Property name:</label>
+                <input type="text" id="propertyName" name="propertyName" placeholder="Enter property name..."/>
 
                 <label htmlFor="location">Location:</label>
                 <input type="text" id="location" name="location" placeholder="Enter location..."/>

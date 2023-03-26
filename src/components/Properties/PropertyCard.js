@@ -12,7 +12,7 @@ export const PropertyCard = ({
     return (
         <div className="property">
                 <div className="image-wrap">
-                    <img src={imageUrl} />
+                    <img src={imageUrl} alt="property"/>
                 </div>
                 <h3>{name}</h3>
                 <h2>Location: {location}</h2>
