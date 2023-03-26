@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 export const PropertyCard = ({
-    name,
+    propertyName,
     location,
     price,
     imageUrl,
@@ -14,7 +14,7 @@ export const PropertyCard = ({
                 <div className="image-wrap">
                     <img src={imageUrl} alt="property"/>
                 </div>
-                <h3>{name}</h3>
+                <h3>{propertyName}</h3>
                 <h2>Location: {location}</h2>
                 <h2>Price: € {price}</h2>
                 <h2>Size: {size} sq.m.</h2>
