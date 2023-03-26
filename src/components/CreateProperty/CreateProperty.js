@@ -17,6 +17,9 @@ export const CreateProperty = () => {
                 <label htmlFor="property-img">Image:</label>
                 <input type="text" id="imageUrl" name="imageUrl" placeholder="Upload a photo..."/>
 
+                <label htmlFor="size">Size:</label>
+                <input type="number" id="size" name="size" min="1"/>
+
                 <label htmlFor="bedrooms">Number of bedrooms:</label>
                 <input type="number" id="bedrooms" name="bedrooms" min="1"/>
 
