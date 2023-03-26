@@ -9,16 +9,25 @@ import { Register } from "./components/Register/Register";
 import { Footer } from "./components/Footer/Footer";
 import { PropertyDetails } from "./components/PropertyDetails/PropertyDetails";
 import { EditProperty } from "./components/EditProperty/EditProperty";
+import { useEffect, useState } from "react";
+import * as propertyService from "./services/propertyService";
 
 function App() {
-    
+    const [properties, setProperties] = useState([]);
+    useEffect(()=> {
+        propertyService.getAll()
+            .then(result => {
+                setProperties(result);
+            })
+    }, []);
+
     return (
         <div id="box">
             <Header />
             <main id="main-content">
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/catalog" element={<Properties />}/>
+                <Route path="/catalog" element={<Properties properties={properties}/>}/>
                 <Route path="/create" element={<CreateProperty />}/>
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
