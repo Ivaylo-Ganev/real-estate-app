@@ -1,7 +1,7 @@
 import { useForm } from "../../hooks/useForm";
 
 export const CreateProperty = ({
-    onSubmitHandler
+    onCreateSubmitHandler
 }) => {
 
     const {values, onChangeHandler, onSubmit} = useForm({
@@ -13,7 +13,7 @@ export const CreateProperty = ({
         bedrooms: '',
         floor: '',
         description: ''
-    }, onSubmitHandler);
+    }, onCreateSubmitHandler);
 
 
     return (

@@ -11,9 +11,11 @@ import { PropertyDetails } from "./components/PropertyDetails/PropertyDetails";
 import { EditProperty } from "./components/EditProperty/EditProperty";
 import { useEffect, useState } from "react";
 import * as propertyService from "./services/propertyService";
+import { AuthContext } from "./contexts/AuthContext";
 
 function App() {
     const [properties, setProperties] = useState([]);
+    const [auth, setAuth] = useState({});
     const navigate = useNavigate();
     useEffect(()=> {
         propertyService.getAll()
@@ -22,21 +24,26 @@ function App() {
             })
     }, []);
 
-    const onSubmitHandler = async (data) => {
+    const onCreateSubmitHandler = async (data) => {
         const newProperty = await propertyService.create(data);
 
         setProperties(state => [...state, newProperty]);
         navigate("/catalog");
     }
+    const onLoginSubmitHandler = async (data) => {
+
+        console.log(data)
+    }
 
     return (
+        <AuthContext.Provider value={{onLoginSubmitHandler}}>
         <div id="box">
             <Header />
             <main id="main-content">
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/catalog" element={<Properties properties={properties}/>}/>
-                <Route path="/create" element={<CreateProperty onSubmitHandler={onSubmitHandler}/>}/>
+                <Route path="/create" element={<CreateProperty onCreateSubmitHandler={onCreateSubmitHandler}/>}/>
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/catalog/:propertyId" element={<PropertyDetails />} />
@@ -45,6 +52,7 @@ function App() {
             </main>
             <Footer />
         </div>
+        </AuthContext.Provider>
     );
 }
 
