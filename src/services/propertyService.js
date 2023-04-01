@@ -1,5 +1,5 @@
 import * as requester from "./requester";
-const baseUrl = "http://localhost:3030/jsonstore/properties";
+const baseUrl = "http://localhost:3030/data/properties";
 
 export const getAll = async () => {
     const result = await requester.get(baseUrl);
