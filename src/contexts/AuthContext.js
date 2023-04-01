@@ -1,13 +1,14 @@
 import { createContext, useState, useEffect } from "react";
 
 import * as authService from "../services/authService";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({
     children
 }) => {
-    const [auth, setAuth] = useState({});
+    const [auth, setAuth] = useLocalStorage("auth", {});
 
     const onLoginSubmitHandler = async (values) => {
         const result = await authService.login(values);
