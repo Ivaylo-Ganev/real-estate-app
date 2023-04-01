@@ -31,8 +31,8 @@ export const PropertyProvider = ({
     }
 
     return (
-        <PropertyContext value={contextValues}>
+        <PropertyContext.Provider value={contextValues}>
             {children}
-        </PropertyContext>
+        </PropertyContext.Provider>
     );
 }
