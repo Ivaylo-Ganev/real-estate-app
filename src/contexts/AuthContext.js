@@ -11,14 +11,16 @@ export const AuthProvider = ({
 
     const onLoginSubmitHandler = async (values) => {
         const result = await authService.login(values);
-        console.log(result)
 
         setAuth(result);
     }
 
     const contextValues = {
-        auth,
-        onLoginSubmitHandler
+        onLoginSubmitHandler,
+        userId: auth._id,
+        userEmail: auth.email,
+        token: auth.accessToken,
+        isAuthenticated: !!auth.accessToken
     }
 
     return (
