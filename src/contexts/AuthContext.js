@@ -12,8 +12,13 @@ export const AuthProvider = ({
         console.log(data)
     }
 
+    const contextValues = {
+        auth,
+        onLoginSubmitHandler
+    }
+
     return (
-        <AuthContext.Provider>
+        <AuthContext.Provider value={contextValues}>
             {children}
         </AuthContext.Provider>
     );

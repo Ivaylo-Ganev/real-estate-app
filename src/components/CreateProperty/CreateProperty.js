@@ -1,8 +1,10 @@
-import { useForm } from "../../hooks/useForm";
+import { useContext } from "react";
 
-export const CreateProperty = ({
-    onCreateSubmitHandler
-}) => {
+import { useForm } from "../../hooks/useForm";
+import { PropertyContext } from "../../contexts/PropertyContext";
+
+export const CreateProperty = () => {
+    const {onCreateSubmitHandler} = useContext(PropertyContext);
 
     const {values, onChangeHandler, onSubmit} = useForm({
         propertyName: '',
