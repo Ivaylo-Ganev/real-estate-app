@@ -8,16 +8,27 @@ const requester = async (method, url, data) => {
         };
         options.body = JSON.stringify(data);
     }
+    const serializedData = localStorage.getItem("auth");
+    const parsedData = JSON.parse(serializedData);
+    const token = parsedData.accessToken;
+
+    if (token) {
+        options.headers = {
+            ...options.headers,
+            "X-Authorization": token
+        }
+    }
 
     const response = await fetch(url, options);
     if (response.status === 204) {
-        return response;
+        return [];
     }
+    const result = await response.json();
+
     if (!response.ok) {
-        return response.message
+        throw result;
     }
     
-    const result = await response.json();
     return result;
 }
 export const get = requester.bind(null, "GET");

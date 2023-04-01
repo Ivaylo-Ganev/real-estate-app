@@ -13,6 +13,7 @@ import { Register } from "./components/Register/Register";
 import { Footer } from "./components/Footer/Footer";
 import { PropertyDetails } from "./components/PropertyDetails/PropertyDetails";
 import { EditProperty } from "./components/EditProperty/EditProperty";
+import { Logout } from "./components/Logout/Logout";
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
                 <Route path="/create" element={<CreateProperty />}/>
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/logout" element={<Logout />} />
                 <Route path="/catalog/:propertyId" element={<PropertyDetails />} />
                 <Route path="/catalog/:propertyId/edit" element={<EditProperty />} />
             </Routes>
