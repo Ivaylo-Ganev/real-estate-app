@@ -1,15 +1,15 @@
-import * as requester from "./requester";
+import * as request from "./requester";
 const baseUrl = "http://localhost:3030/data/properties";
 
 export const getAll = async () => {
-    const result = await requester.get(baseUrl);
-    return Object.values(result);
+    const result = await request.get(baseUrl);
+    return result;
 }
 export const create = async (data) => {
-    const result = await requester.post(baseUrl, data);
+    const result = await request.post(baseUrl, data);
     return result;
 }
 export const getOne = async (propertyId) => {
-    const result = await requester.get(`${baseUrl}/${propertyId}`);
+    const result = await request.get(`${baseUrl}/${propertyId}`);
     return result;
 }
