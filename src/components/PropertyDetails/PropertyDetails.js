@@ -7,33 +7,46 @@ import { PropertyContext } from "../../contexts/PropertyContext";
 
 export const PropertyDetails = () => {
     const [property, setProperty] = useState({});
+    const [addedFavourite, setAddedFavourite] = useState(false);
     const {propertyId} = useParams();
     const {userId} = useContext(AuthContext);
     const {onPropertyDelete} = useContext(PropertyContext);
     const navigate = useNavigate();
     useEffect(()=> {
-        propertyService.getOne(propertyId)
-            .then(data => {
-                setProperty(data);
+        Promise.all([
+            propertyService.getOne(propertyId),
+            favouritesService.getFavouritesByUser(userId)
+        ])        
+            .then(([currentProperty, userFavourites]) => {
+                setProperty(currentProperty);
+                if (userFavourites.find(x => x.propertyId === propertyId)) {
+                    setAddedFavourite(true);
+                }
             })
-    }, [propertyId]);
+    }, [propertyId, userId]);
     const isOwner = userId === property._ownerId;
 
     const onDeleteClick = async () => {
                 // eslint-disable-next-line no-restricted-globals
         const result = confirm("Are you sure you want to delete this property?");
         if (result) {
-            const deletedProperty = await propertyService.deleteProperty(propertyId);
-            console.log(deletedProperty)
-            console.log(propertyId)
+            await propertyService.deleteProperty(propertyId);
             onPropertyDelete(propertyId);
             navigate('/catalog');
         }
     }
     const onFavouritesClick = async (e) => {
         e.preventDefault();
-        await favouritesService.addToFavourites(propertyId);
-
+        const favouriteData = {
+            propertyId,
+            imageUrl: property.imageUrl,
+            propertyName: property.propertyName,
+            location: property.location,
+            price: property.price,
+            size: property.size
+        }
+        await favouritesService.addToFavourites(favouriteData);
+        setAddedFavourite(true);
     }
 
     return (
@@ -62,10 +75,16 @@ export const PropertyDetails = () => {
                  <button href="#" className="button" onClick={onDeleteClick}>Delete</button>
              </div>
             )}
-            {!isOwner && (
+            {!isOwner && userId && !addedFavourite && (
                 <button href="#" className="button" onClick={onFavouritesClick}>Add to Favourites</button>
+            )}   
+
+            {!isOwner && userId && addedFavourite && (
+                <div>
+                <h1>This property has been added to your favourites.</h1>
+                </div>
             )}
-           
+
         </div>
         </section>
     );
