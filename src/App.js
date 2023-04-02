@@ -15,6 +15,7 @@ import { PropertyDetails } from "./components/PropertyDetails/PropertyDetails";
 import { EditProperty } from "./components/EditProperty/EditProperty";
 import { Logout } from "./components/Logout/Logout";
 import { RouteGuard } from "./components/RouteGuard/RouteGuard";
+import { FavouriteProperties } from "./components/FavouriteProperties/FavouriteProperties";
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
                 <Route element={<RouteGuard />}>
                     <Route path="/create" element={<CreateProperty />}/>
                     <Route path="/catalog/:propertyId/edit" element={<EditProperty />} />
+                    <Route path="/favourites" element={<FavouriteProperties />}/>
                     <Route path="/logout" element={<Logout />} />
                 </Route>
             </Routes>

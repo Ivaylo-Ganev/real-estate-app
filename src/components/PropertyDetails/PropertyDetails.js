@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import * as propertyService from "../../services/propertyService";
+import * as favouritesService from "../../services/favouritesService";
 import { AuthContext } from "../../contexts/AuthContext";
 import { PropertyContext } from "../../contexts/PropertyContext";
 
@@ -28,6 +29,11 @@ export const PropertyDetails = () => {
             onPropertyDelete(propertyId);
             navigate('/catalog');
         }
+    }
+    const onFavouritesClick = async () => {
+        const result = await favouritesService.addToFavourites(propertyId);
+        console.log(result)
+        console.log(userId)
     }
 
     return (
@@ -57,7 +63,7 @@ export const PropertyDetails = () => {
              </div>
             )}
             {!isOwner && (
-                <button className="button" ><Link to="/favourites">Add to Favourites</Link></button>
+                <button className="button" onClick={onFavouritesClick}><Link to="/favourites">Add to Favourites</Link></button>
             )}
            
         </div>

@@ -12,6 +12,7 @@ export const Navigation = () => {
         {isAuthenticated && (
         <div id="user">
         <Link to="/create">Create Property</Link>
+        <Link to="/favourites">My favourites</Link>
         <Link to="/logout">Logout</Link>
         </div>
         )}
