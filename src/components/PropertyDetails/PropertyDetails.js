@@ -52,9 +52,12 @@ export const PropertyDetails = () => {
             </p>
             {isOwner && (
                  <div className="buttons">
-                 <Link to={`/catalog/${propertyId}/edit`} className="button">Edit</Link>
+                 <button className="button"><Link to={`/catalog/${propertyId}/edit`}>Edit</Link></button>
                  <button href="#" className="button" onClick={onDeleteClick}>Delete</button>
              </div>
+            )}
+            {!isOwner && (
+                <button className="button" ><Link to="/favourites">Add to Favourites</Link></button>
             )}
            
         </div>
