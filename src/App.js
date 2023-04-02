@@ -14,6 +14,7 @@ import { Footer } from "./components/Footer/Footer";
 import { PropertyDetails } from "./components/PropertyDetails/PropertyDetails";
 import { EditProperty } from "./components/EditProperty/EditProperty";
 import { Logout } from "./components/Logout/Logout";
+import { RouteGuard } from "./components/RouteGuard/RouteGuard";
 
 function App() {
 
@@ -26,12 +27,14 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/catalog" element={<Properties />}/>
-                <Route path="/create" element={<CreateProperty />}/>
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/logout" element={<Logout />} />
                 <Route path="/catalog/:propertyId" element={<PropertyDetails />} />
-                <Route path="/catalog/:propertyId/edit" element={<EditProperty />} />
+                <Route element={<RouteGuard />}>
+                    <Route path="/create" element={<CreateProperty />}/>
+                    <Route path="/catalog/:propertyId/edit" element={<EditProperty />} />
+                    <Route path="/logout" element={<Logout />} />
+                </Route>
             </Routes>
             </main>
             <Footer />
