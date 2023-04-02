@@ -27,7 +27,7 @@ export const PropertyProvider = ({
     const onEditSubmitHandler = async (data) => {
         const propertyId = data._id;
         const editedProperty = await propertyService.edit(propertyId, data);
-        console.log(editedProperty)
+        setProperties(state => state.map(x => x._id === propertyId ? editedProperty : x));
 
         navigate(`/catalog/${propertyId}`);
     }

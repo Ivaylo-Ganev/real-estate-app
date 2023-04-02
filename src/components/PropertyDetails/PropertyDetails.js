@@ -15,6 +15,13 @@ export const PropertyDetails = () => {
     }, [propertyId]);
     const isOwner = userId === property._ownerId;
 
+    const onDeleteClick = (propertyId) => {
+        // const result = confirm("Are you sure you want to delete this property?");
+        // if (result) {
+
+        // }
+    }
+
     return (
         <section id="property-details">
         <h1>Property Details</h1>
@@ -38,7 +45,7 @@ export const PropertyDetails = () => {
             {isOwner && (
                  <div className="buttons">
                  <Link to={`/catalog/${propertyId}/edit`} className="button">Edit</Link>
-                 <a href="#" className="button">Delete</a>
+                 <a href="#" className="button" onClick={onDeleteClick}>Delete</a>
              </div>
             )}
            
