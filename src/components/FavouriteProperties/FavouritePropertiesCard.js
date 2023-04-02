@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export const PropertyCard = ({
+export const FavouritePropertiesCard = ({
     propertyName,
     location,
     price,
@@ -25,6 +25,7 @@ export const PropertyCard = ({
                     </Link>
                     </button>
                 </div>
+                    <button href="#" className="details-btn">Delete</button>
                
             </div>
     );

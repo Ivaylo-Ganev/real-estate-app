@@ -30,10 +30,10 @@ export const PropertyDetails = () => {
             navigate('/catalog');
         }
     }
-    const onFavouritesClick = async () => {
-        const result = await favouritesService.addToFavourites(propertyId);
-        console.log(result)
-        console.log(userId)
+    const onFavouritesClick = async (e) => {
+        e.preventDefault();
+        await favouritesService.addToFavourites(propertyId);
+
     }
 
     return (
@@ -63,7 +63,7 @@ export const PropertyDetails = () => {
              </div>
             )}
             {!isOwner && (
-                <button className="button" onClick={onFavouritesClick}><Link to="/favourites">Add to Favourites</Link></button>
+                <button href="#" className="button" onClick={onFavouritesClick}>Add to Favourites</button>
             )}
            
         </div>
