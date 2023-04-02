@@ -13,3 +13,7 @@ export const getOne = async (propertyId) => {
     const result = await request.get(`${baseUrl}/${propertyId}`);
     return result;
 }
+export const edit = async (propertyId, data) => {
+    const result = await request.put(`${baseUrl}/${propertyId}`, data);
+    return result;
+}

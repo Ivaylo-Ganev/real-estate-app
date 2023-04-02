@@ -24,10 +24,18 @@ export const PropertyProvider = ({
         setProperties(state => [...state, newProperty]);
         navigate("/catalog");
     }
+    const onEditSubmitHandler = async (data) => {
+        const propertyId = data._id;
+        const editedProperty = await propertyService.edit(propertyId, data);
+        console.log(editedProperty)
+
+        navigate(`/catalog/${propertyId}`);
+    }
 
     const contextValues = {
         properties,
-        onCreateSubmitHandler
+        onCreateSubmitHandler,
+        onEditSubmitHandler
     }
 
     return (

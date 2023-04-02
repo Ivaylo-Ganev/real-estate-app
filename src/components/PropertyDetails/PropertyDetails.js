@@ -1,15 +1,19 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
+import { Link, useParams } from "react-router-dom";
 import * as propertyService from "../../services/propertyService";
+import { AuthContext } from "../../contexts/AuthContext";
+
 export const PropertyDetails = () => {
     const [property, setProperty] = useState({});
-    const {propertyId} = useParams()
+    const {propertyId} = useParams();
+    const {userId} = useContext(AuthContext);
     useEffect(()=> {
         propertyService.getOne(propertyId)
             .then(data => {
                 setProperty(data);
             })
     }, [propertyId]);
+    const isOwner = userId === property._ownerId;
 
     return (
         <section id="property-details">
@@ -31,11 +35,13 @@ export const PropertyDetails = () => {
             <p className="text">
             {property.description}
             </p>
-
-            <div className="buttons">
-                <a href="#" className="button">Edit</a>
-                <a href="#" className="button">Delete</a>
-            </div>
+            {isOwner && (
+                 <div className="buttons">
+                 <Link to={`/catalog/${propertyId}/edit`} className="button">Edit</Link>
+                 <a href="#" className="button">Delete</a>
+             </div>
+            )}
+           
         </div>
         </section>
     );
