@@ -9,6 +9,7 @@ export const FavouritePropertiesCard = ({
     imageUrl,
     size,
     _id,
+    propertyId,
     onDeleteClickHandler
 }) => {
 
@@ -26,7 +27,14 @@ export const FavouritePropertiesCard = ({
                 <h2>Price: € {price}</h2>
                 <h2>Size: {size} sq.m.</h2>
 
-                <button href="#" className="details-btn" onClick={onDeleteClick}>Delete</button>
+                <div className="data-buttons">
+                    <button><Link to={`/catalog/${propertyId}`} className="btn details-btn">
+                        Details
+                    </Link>
+                    </button>
+                </div>
+
+                <button href="#" className="details-btn" onClick={onDeleteClick}>Remove</button>
             </div>
     );
 }

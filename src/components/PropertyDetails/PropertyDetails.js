@@ -8,6 +8,7 @@ import { PropertyContext } from "../../contexts/PropertyContext";
 export const PropertyDetails = () => {
     const [property, setProperty] = useState({});
     const [addedFavourite, setAddedFavourite] = useState(false);
+    const [favouriteProperty, setFavouriteProperty] = useState({});
     const {propertyId} = useParams();
     const {userId} = useContext(AuthContext);
     const {onPropertyDelete} = useContext(PropertyContext);
@@ -19,8 +20,10 @@ export const PropertyDetails = () => {
         ])        
             .then(([currentProperty, userFavourites]) => {
                 setProperty(currentProperty);
-                if (userFavourites.find(x => x.propertyId === propertyId)) {
+                const favouriteProperty = userFavourites.find(x => x.propertyId === propertyId);
+                if (favouriteProperty) {
                     setAddedFavourite(true);
+                    setFavouriteProperty(favouriteProperty);
                 }
             })
     }, [propertyId, userId]);
@@ -45,8 +48,15 @@ export const PropertyDetails = () => {
             price: property.price,
             size: property.size
         }
-        await favouritesService.addToFavourites(favouriteData);
+        const newFavouritePropoerty = await favouritesService.addToFavourites(favouriteData);
+        console.log(newFavouritePropoerty)
         setAddedFavourite(true);
+        setFavouriteProperty(newFavouritePropoerty);
+    }
+    const onDeleteFavouritesClick = async () => {
+        console.log(favouriteProperty._id)
+        await favouritesService.deleteFavourite(favouriteProperty._id);
+        setAddedFavourite(false);
     }
 
     return (
@@ -78,12 +88,15 @@ export const PropertyDetails = () => {
             {!isOwner && userId && !addedFavourite && (
                 <button href="#" className="button" onClick={onFavouritesClick}>Add to Favourites</button>
             )}   
+              {!isOwner && userId && addedFavourite && (
+                <button href="#" className="button" onClick={onDeleteFavouritesClick}>Remove from Favourites</button>
+            )}   
 
-            {!isOwner && userId && addedFavourite && (
+            {/* {!isOwner && userId && addedFavourite && (
                 <div>
                 <h1>This property has been added to your favourites.</h1>
                 </div>
-            )}
+            )} */}
 
         </div>
         </section>
