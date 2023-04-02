@@ -17,3 +17,4 @@ export const edit = async (propertyId, data) => {
     const result = await request.put(`${baseUrl}/${propertyId}`, data);
     return result;
 }
+export const deleteProperty = (propertyId) => request.del(`${baseUrl}/${propertyId}`);

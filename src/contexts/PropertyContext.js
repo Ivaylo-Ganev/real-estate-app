@@ -31,11 +31,16 @@ export const PropertyProvider = ({
 
         navigate(`/catalog/${propertyId}`);
     }
+    
+    const onPropertyDelete = (propertyId) => {
+        setProperties(state => state.filter(x => x._id !== propertyId));
+    }
 
     const contextValues = {
         properties,
         onCreateSubmitHandler,
-        onEditSubmitHandler
+        onEditSubmitHandler,
+        onPropertyDelete
     }
 
     return (

@@ -1,8 +1,9 @@
 const requester = async (method, url, data) => {
 
-    const options = {};
+    const options = {
+        method
+    };
     if (data) {
-        options.method = method;
         options.headers = {
             "content-type": "application/json"
         };

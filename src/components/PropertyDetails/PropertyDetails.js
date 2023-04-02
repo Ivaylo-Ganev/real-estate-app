@@ -1,12 +1,15 @@
 import { useEffect, useState, useContext } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import * as propertyService from "../../services/propertyService";
 import { AuthContext } from "../../contexts/AuthContext";
+import { PropertyContext } from "../../contexts/PropertyContext";
 
 export const PropertyDetails = () => {
     const [property, setProperty] = useState({});
     const {propertyId} = useParams();
     const {userId} = useContext(AuthContext);
+    const {onPropertyDelete} = useContext(PropertyContext);
+    const navigate = useNavigate();
     useEffect(()=> {
         propertyService.getOne(propertyId)
             .then(data => {
@@ -15,11 +18,16 @@ export const PropertyDetails = () => {
     }, [propertyId]);
     const isOwner = userId === property._ownerId;
 
-    const onDeleteClick = (propertyId) => {
-        // const result = confirm("Are you sure you want to delete this property?");
-        // if (result) {
-
-        // }
+    const onDeleteClick = async () => {
+                // eslint-disable-next-line no-restricted-globals
+        const result = confirm("Are you sure you want to delete this property?");
+        if (result) {
+            const deletedProperty = await propertyService.deleteProperty(propertyId);
+            console.log(deletedProperty)
+            console.log(propertyId)
+            onPropertyDelete(propertyId);
+            navigate('/catalog');
+        }
     }
 
     return (
@@ -45,7 +53,7 @@ export const PropertyDetails = () => {
             {isOwner && (
                  <div className="buttons">
                  <Link to={`/catalog/${propertyId}/edit`} className="button">Edit</Link>
-                 <a href="#" className="button" onClick={onDeleteClick}>Delete</a>
+                 <button href="#" className="button" onClick={onDeleteClick}>Delete</button>
              </div>
             )}
            
