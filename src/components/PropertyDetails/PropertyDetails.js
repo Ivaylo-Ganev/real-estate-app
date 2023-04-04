@@ -26,6 +26,7 @@ export const PropertyDetails = () => {
                     setFavouriteProperty(favouriteProperty);
                 }
             })
+            .catch(error => console.log(error.message))
     }, [propertyId, userId]);
     const isOwner = userId === property._ownerId;
 
@@ -49,12 +50,10 @@ export const PropertyDetails = () => {
             size: property.size
         }
         const newFavouritePropoerty = await favouritesService.addToFavourites(favouriteData);
-        console.log(newFavouritePropoerty)
         setAddedFavourite(true);
         setFavouriteProperty(newFavouritePropoerty);
     }
     const onDeleteFavouritesClick = async () => {
-        console.log(favouriteProperty._id)
         await favouritesService.deleteFavourite(favouriteProperty._id);
         setAddedFavourite(false);
     }

@@ -5,12 +5,8 @@ import { PropertyContext } from "../../contexts/PropertyContext";
 
 export const CreateProperty = () => {
     const {onCreateSubmitHandler} = useContext(PropertyContext);
-    const [formErrors, setFormErrors] = useState({
-        propertyName: '',
-        location: ''
-    });
-
-    const {values, onChangeHandler, onSubmit} = useForm({
+    
+    const {values, formErrors, onChangeHandler, onSubmit, onBlur} = useForm({
         propertyName: '',
         location: '',
         price: '',
@@ -20,26 +16,6 @@ export const CreateProperty = () => {
         floor: '',
         description: ''
     }, onCreateSubmitHandler);
-
-    const onBlur = (e) => {
-        e.preventDefault();
-        const currentValue = e.target.value;
-        const currentName = e.target.name;
-        
-        if (currentName === 'propertyName' && currentValue.length > 3) {
-            const propertyNameError = "Property name too long"
-            setFormErrors(state => ({...state, [currentName]: propertyNameError}));
-        } else if (currentName === 'propertyName' && currentValue.length <= 3) {
-            setFormErrors(state => ({...state, [currentName]: ''}));
-        }
-
-        if (currentName === 'location' && currentValue.length > 3) {
-            const locationNameError = "Location name too long"
-            setFormErrors(state => ({...state, [currentName]: locationNameError}));           
-        } else if (currentName === 'location' && currentValue.length <= 3) {
-            setFormErrors(state => ({...state, [currentName]: ''}));
-        }
-    }
 
     return (
         <section id="create-page" className="auth">
@@ -76,22 +52,87 @@ export const CreateProperty = () => {
                 <p className="form-error">{formErrors.location}</p>
                 )}
                 <label htmlFor="price">Price in EUR:</label>
-                <input type="number" id="price" name="price" min="1" value={values.price} onChange={onChangeHandler}/>
+                <input
+                type="number"
+                id="price"
+                name="price"
+                min="1"
+                value={values.price}
+                onChange={onChangeHandler}
+                onBlur={onBlur}
+                />
+                {formErrors['price'] && (
+                <p className="form-error">{formErrors.price}</p>
+                )}
 
                 <label htmlFor="property-img">Image:</label>
-                <input type="text" id="imageUrl" name="imageUrl" placeholder="Upload a photo..." value={values.imageUrl} onChange={onChangeHandler}/>
+                <input
+                type="text"
+                id="imageUrl"
+                name="imageUrl"
+                placeholder="Upload a photo..."
+                value={values.imageUrl}
+                onChange={onChangeHandler}
+                onBlur={onBlur}
+                />
+                {formErrors['imageUrl'] && (
+                <p className="form-error">{formErrors.imageUrl}</p>
+                )}
 
                 <label htmlFor="size">Size:</label>
-                <input type="number" id="size" name="size" min="1" value={values.size} onChange={onChangeHandler}/>
+                <input
+                type="number"
+                id="size"
+                name="size"
+                min="1"
+                value={values.size}
+                onChange={onChangeHandler}
+                onBlur={onBlur}
+                />
+                 {formErrors['size'] && (
+                <p className="form-error">{formErrors.size}</p>
+                )}
 
                 <label htmlFor="bedrooms">Number of bedrooms:</label>
-                <input type="number" id="bedrooms" name="bedrooms" min="1" value={values.bedrooms} onChange={onChangeHandler}/>
+                <input
+                type="number"
+                id="bedrooms"
+                name="bedrooms"
+                min="1"
+                value={values.bedrooms}
+                onChange={onChangeHandler}
+                onBlur={onBlur}
+                />
+                  {formErrors['bedrooms'] && (
+                <p className="form-error">{formErrors.bedrooms}</p>
+                )}
 
                 <label htmlFor="floor">Floor:</label>
-                <input type="number" id="floor" name="floor" min="0" value={values.floor} onChange={onChangeHandler}/>
+                <input
+                type="number"
+                id="floor"
+                name="floor"
+                min="0"
+                value={values.floor}
+                onChange={onChangeHandler}
+                onBlur={onBlur}
+                />
+                {formErrors['floor'] && (
+                <p className="form-error">{formErrors.floor}</p>
+                )}
 
                 <label htmlFor="description">Description:</label>
-                <textarea name="description" id="description" value={values.description} onChange={onChangeHandler}></textarea>
+                <textarea
+                name="description"
+                id="description"
+                value={values.description}
+                onChange={onChangeHandler}
+                onBlur={onBlur}
+                >
+                </textarea>
+                {formErrors['description'] && (
+                <p className="form-error">{formErrors.description}</p>
+                )}
                 <input className="btn submit" type="submit" value="Create Property"/>
             </div>
         </form>

@@ -8,7 +8,7 @@ import { PropertyContext } from "../../contexts/PropertyContext";
 export const EditProperty = () => {
     const {propertyId} = useParams();
     const {onEditSubmitHandler} = useContext(PropertyContext);
-    const {values, onChangeHandler, onSubmit, changeValues} = useForm({
+    const {values, formErrors, onBlur, onChangeHandler, onSubmit, changeValues} = useForm({
         propertyName: '',
         location: '',
         price: '',
@@ -40,7 +40,11 @@ export const EditProperty = () => {
                 placeholder="Enter property name..." 
                 value={values.propertyName}
                 onChange={onChangeHandler}
+                onBlur={onBlur}
                 />
+                {formErrors['propertyName'] && (
+                <p className="form-error">{formErrors.propertyName}</p>
+                )}
 
                 <label htmlFor="location">Location:</label>
                 <input
@@ -50,7 +54,11 @@ export const EditProperty = () => {
                 placeholder="Enter location..."
                 value={values.location}
                 onChange={onChangeHandler}
+                onBlur={onBlur}
                 />
+                {formErrors['location'] && (
+                <p className="form-error">{formErrors.location}</p>
+                )}
 
                 <label htmlFor="price">Price in EUR:</label>
                 <input
@@ -60,7 +68,11 @@ export const EditProperty = () => {
                 min="1"
                 value={values.price}
                 onChange={onChangeHandler}
+                onBlur={onBlur}
                 />
+                {formErrors['price'] && (
+                <p className="form-error">{formErrors.price}</p>
+                )}
 
                 <label htmlFor="property-img">Image:</label>
                 <input
@@ -70,7 +82,11 @@ export const EditProperty = () => {
                 placeholder="Upload a photo..."
                 value={values.imageUrl}
                 onChange={onChangeHandler}
+                onBlur={onBlur}
                 />
+                 {formErrors['imageUrl'] && (
+                <p className="form-error">{formErrors.imageUrl}</p>
+                )}
 
                 <label htmlFor="size">Size:</label>
                 <input
@@ -80,7 +96,11 @@ export const EditProperty = () => {
                 min="1"
                 value={values.size}
                 onChange={onChangeHandler}
+                onBlur={onBlur}
                 />
+                {formErrors['size'] && (
+                <p className="form-error">{formErrors.size}</p>
+                )}
 
                 <label htmlFor="bedrooms">Number of bedrooms:</label>
                 <input
@@ -90,7 +110,11 @@ export const EditProperty = () => {
                 min="1"
                 value={values.bedrooms}
                 onChange={onChangeHandler}
+                onBlur={onBlur}
                 />
+                 {formErrors['bedrooms'] && (
+                <p className="form-error">{formErrors.bedrooms}</p>
+                )}
 
                 <label htmlFor="floor">Floor:</label>
                 <input
@@ -100,7 +124,11 @@ export const EditProperty = () => {
                 min="0"
                 value={values.floor}
                 onChange={onChangeHandler}
+                onBlur={onBlur}
                 />
+                {formErrors['floor'] && (
+                <p className="form-error">{formErrors.floor}</p>
+                )}
 
                 <label htmlFor="description">Description:</label>
                 <textarea 
@@ -108,8 +136,13 @@ export const EditProperty = () => {
                 id="description"
                 value={values.description}
                 onChange={onChangeHandler}
+                onBlur={onBlur}
                 >
                 </textarea>
+                 {formErrors['description'] && (
+                <p className="form-error">{formErrors.description}</p>
+                )}
+                
                 <input className="btn submit" type="submit" value="Edit Property"/>
 
             </div>
