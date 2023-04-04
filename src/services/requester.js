@@ -11,7 +11,7 @@ const requester = async (method, url, data) => {
     }
     const serializedData = localStorage.getItem("auth");
     const parsedData = JSON.parse(serializedData);
-    const token = parsedData.accessToken;
+    const token = parsedData?.accessToken;
 
     if (token) {
         options.headers = {

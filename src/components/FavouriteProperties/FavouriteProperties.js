@@ -2,35 +2,18 @@ import { useContext, useEffect, useState } from "react";
 
 import { AuthContext } from "../../contexts/AuthContext";
 import { FavouritePropertiesCard } from "./FavouritePropertiesCard";
-import * as propertyService from "../../services/propertyService";
 import * as favouritesService from "../../services/favouritesService";
 
 export const FavouriteProperties = () => {
     const [favouriteProperties, setFavouriteProperties] = useState([]);
     const {userId} = useContext(AuthContext);
-    // useEffect(()=> {
-    //     Promise.all([
-    //         propertyService.getAll(),
-    //         favouritesService.getByUser(userId)
-    //     ])
-    //             .then(([allProperties, favourites]) => {
-    //                 const result = allProperties.filter(x => {
-    //                     const filteredProperties = favourites.some(fav => x._id === fav.propertyId);
-    //                     const res = filteredProperties.map(property => ({...property, ["favouriteData"]: favourites.find(y => y.propertyId === property._id)}));
-    //                     console.log(res)
-    //                     return res;
-    //                 })
-    //                 setFavouriteProperties(state => {
-    //                     // return result.map(property => property.favouriteId = )
-    //                 });
-    //             })        
-    // }, [userId]);
 
     useEffect(()=> {
         favouritesService.getFavouritesByUser(userId)
             .then(result => {
                 setFavouriteProperties(result);
             })
+            .catch(error => console.log(error.message))
     }, [userId]);
 
     const onDeleteClickHandler = (deletedPropertyId) => {
