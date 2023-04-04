@@ -65,6 +65,16 @@ export const useForm = (initialValues, onSubmitHandler) => {
         } else if (currentName === 'description' && currentValue.length <= 50) {
             setFormErrors(state => ({...state, [currentName]: ''}));
         }
+        if (currentName === 'email' && currentValue.length === 0) {
+            setFormErrors(state => ({...state, [currentName]: "Email field cannot be empty"}));
+        } else if (currentName === 'email' && currentValue.length > 0) {
+            setFormErrors(state => ({...state, [currentName]: ''}));
+        }
+        if (currentName === 'password' && currentValue.length === 0) {
+            setFormErrors(state => ({...state, [currentName]: "Password field cannot be empty"}));
+        } else if (currentName === 'email' && currentValue.length > 0) {
+            setFormErrors(state => ({...state, [currentName]: ''}));
+        }
     }
     return {
         values,
