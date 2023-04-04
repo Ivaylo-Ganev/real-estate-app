@@ -5,7 +5,7 @@ import { useForm } from "../../hooks/useForm";
 
 export const Register = () => {
     const {onRegisterSubmitHandler} = useContext(AuthContext);
-    const {values, onChangeHandler, onSubmit} = useForm({
+    const {values, formErrors, onBlur, onChangeHandler, onSubmit} = useForm({
         email: "",
         password: "",
         confirmPassword: ""
@@ -18,14 +18,41 @@ export const Register = () => {
                 <h1>Register</h1>
 
                 <label htmlFor="email">Email:</label>
-                <input type="email" id="email" name="email" value={values.email} onChange={onChangeHandler}/>
-
+                <input
+                type="email"
+                id="email"
+                name="email"
+                value={values.email}
+                onChange={onChangeHandler}
+                onBlur={onBlur}
+                />
+                 {formErrors['email'] && (
+                <p className="form-error">{formErrors.email}</p>
+                )}
                 <label htmlFor="pass">Password:</label>
-                <input type="password" name="password" id="register-password" value={values.password} onChange={onChangeHandler}/>
-
+                <input
+                type="password"
+                name="password"
+                id="register-password"
+                value={values.password}
+                onChange={onChangeHandler}
+                onBlur={onBlur}
+                />
+                 {formErrors['password'] && (
+                <p className="form-error">{formErrors.password}</p>
+                )}
                 <label htmlFor="confirm-pass">Confirm Password:</label>
-                <input type="password" name="confirmPassword" id="confirmPassword" value={values.confirmPassword} onChange={onChangeHandler}/>
-
+                <input
+                type="password"
+                name="confirmPassword"
+                id="confirmPassword"
+                value={values.confirmPassword} 
+                onChange={onChangeHandler}
+                onBlur={onBlur}
+                />
+                 {formErrors['confirmPassword'] && (
+                <p className="form-error">{formErrors.confirmPassword}</p>
+                )}
                 <input className="btn submit" type="submit" value="Sign up"/>
 
                 <p className="field">
