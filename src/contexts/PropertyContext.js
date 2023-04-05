@@ -9,6 +9,7 @@ export const PropertyProvider = ({
     children
 }) => {
     const [properties, setProperties] = useState([]);
+    const [hasError, setHasError] = useState('');
     const navigate = useNavigate();
 
     useEffect(()=> {
@@ -16,20 +17,31 @@ export const PropertyProvider = ({
             .then(result => {
                 setProperties(result);
             })
+            .catch(error => {
+                console.log(error.message);
+            })
     }, []);
     
     const onCreateSubmitHandler = async (data) => {
-        const newProperty = await propertyService.create(data);
-
-        setProperties(state => [...state, newProperty]);
-        navigate("/catalog");
+        try {
+            const newProperty = await propertyService.create(data);
+            setProperties(state => [...state, newProperty]);
+            setHasError('');
+            navigate("/catalog");
+        } catch (error) {
+            setHasError(error.message);
+        }
     }
     const onEditSubmitHandler = async (data) => {
-        const propertyId = data._id;
-        const editedProperty = await propertyService.edit(propertyId, data);
-        setProperties(state => state.map(x => x._id === propertyId ? editedProperty : x));
-
-        navigate(`/catalog/${propertyId}`);
+        try {
+            const propertyId = data._id;
+            const editedProperty = await propertyService.edit(propertyId, data);
+            setProperties(state => state.map(x => x._id === propertyId ? editedProperty : x));
+            setHasError('');
+            navigate(`/catalog/${propertyId}`);
+        } catch (error) {
+            setHasError(error.message);
+        }   
     }
     
     const onPropertyDelete = (propertyId) => {
@@ -40,7 +52,8 @@ export const PropertyProvider = ({
         properties,
         onCreateSubmitHandler,
         onEditSubmitHandler,
-        onPropertyDelete
+        onPropertyDelete,
+        hasError
     }
 
     return (

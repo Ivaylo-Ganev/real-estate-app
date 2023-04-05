@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import * as favouriteService from "../../services/favouritesService";
@@ -12,13 +13,26 @@ export const FavouritePropertiesCard = ({
     propertyId,
     onDeleteClickHandler
 }) => {
+    const [hasError, setHasError] = useState('');
 
     const onDeleteClick = async () => {
-        await favouriteService.deleteFavourite(_id);
-        onDeleteClickHandler(_id);
+        try {
+            await favouriteService.deleteFavourite(_id);
+            setHasError('');
+            onDeleteClickHandler(_id);
+        } catch (error) {
+            setHasError(error.message);
+        }
     }
     return (
         <div className="property">
+              {hasError && (
+                <div>
+                    <div className="errorContainer">
+                         <p>{hasError}</p>
+                    </div>
+                </div>
+            )}
                 <div className="image-wrap">
                     <img src={imageUrl} alt="property"/>
                 </div>

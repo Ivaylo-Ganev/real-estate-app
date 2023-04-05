@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 
 import * as propertyService from "../../services/propertyService";
@@ -7,7 +7,8 @@ import { PropertyContext } from "../../contexts/PropertyContext";
 
 export const EditProperty = () => {
     const {propertyId} = useParams();
-    const {onEditSubmitHandler} = useContext(PropertyContext);
+    const [hasGetEditError, setHasGetEditError] = useState('');
+    const {onEditSubmitHandler, hasError} = useContext(PropertyContext);
     const {values, formErrors, onBlur, onChangeHandler, onSubmit, changeValues} = useForm({
         propertyName: '',
         location: '',
@@ -21,13 +22,30 @@ export const EditProperty = () => {
     useEffect(()=> {
         propertyService.getOne(propertyId)
             .then(result => {
-                changeValues(result)
+                changeValues(result);
+                setHasGetEditError('')
+            })
+            .catch(error => {
+                setHasGetEditError(error.message);
             })
     }, [propertyId]);
 
     return (
-
         <section id="edit-page" className="auth">
+            {hasError && (
+                <div>
+                    <div className="errorContainer">
+                         <p>{hasError}</p>
+                    </div>
+                </div>
+            )}
+             {hasGetEditError && (
+                <div>
+                    <div className="errorContainer">
+                         <p>{hasGetEditError}</p>
+                    </div>
+                </div>
+            )}
         <form id="edit" method="POST" onSubmit={onSubmit}>
             <div className="container">
 

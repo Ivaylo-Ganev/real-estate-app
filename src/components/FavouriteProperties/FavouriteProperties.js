@@ -13,7 +13,9 @@ export const FavouriteProperties = () => {
             .then(result => {
                 setFavouriteProperties(result);
             })
-            .catch(error => console.log(error.message))
+            .catch(error => {
+                console.log(error.message);
+            })
     }, [userId]);
 
     const onDeleteClickHandler = (deletedPropertyId) => {
@@ -21,7 +23,7 @@ export const FavouriteProperties = () => {
     }
     return (
         <section id="catalog-page">
-            
+           
             {favouriteProperties.map(x => {
                 return <FavouritePropertiesCard key={x._id} {...x} onDeleteClickHandler={onDeleteClickHandler}/>
             })}

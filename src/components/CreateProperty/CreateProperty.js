@@ -1,10 +1,10 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 import { useForm } from "../../hooks/useForm";
 import { PropertyContext } from "../../contexts/PropertyContext";
 
 export const CreateProperty = () => {
-    const {onCreateSubmitHandler} = useContext(PropertyContext);
+    const {onCreateSubmitHandler, hasError} = useContext(PropertyContext);
     
     const {values, formErrors, onChangeHandler, onSubmit, onBlur} = useForm({
         propertyName: '',
@@ -19,7 +19,13 @@ export const CreateProperty = () => {
 
     return (
         <section id="create-page" className="auth">
-            
+            {hasError && (
+                <div>
+                    <div className="errorContainer">
+                         <p>{hasError}</p>
+                    </div>
+                </div>
+            )}
         <form id="create" action="POST" onSubmit={onSubmit}>
             <div className="container">
 
