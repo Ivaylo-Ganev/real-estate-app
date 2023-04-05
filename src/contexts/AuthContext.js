@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import * as authService from "../services/authService";
@@ -17,7 +17,7 @@ export const AuthProvider = ({
         try {
             const result = await authService.login(values);
             setAuth(result);
-            setHasError('')
+            setHasError('');
             navigate('/catalog');
         } catch (error) {
             setHasError(error.message);
@@ -27,14 +27,16 @@ export const AuthProvider = ({
     const onRegisterSubmitHandler = async (values) => {
         const {confirmPassword, ...registerValues} = values;
         if (confirmPassword !== registerValues.password) {
+            setHasError('Passwords do not match');
             return;
         }
         try {
             const result = await authService.register(registerValues);
             setAuth(result);
+            setHasError('');
             navigate('/catalog');
         } catch (error) {
-            console.log(error) //TODO error handling
+            setHasError(error.message);
         }
     }
 

@@ -4,7 +4,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { useForm } from "../../hooks/useForm";
 
 export const Register = () => {
-    const {onRegisterSubmitHandler} = useContext(AuthContext);
+    const {onRegisterSubmitHandler, hasError} = useContext(AuthContext);
     const {values, formErrors, onBlur, onChangeHandler, onSubmit} = useForm({
         email: "",
         password: "",
@@ -13,6 +13,13 @@ export const Register = () => {
 
     return (
         <section id="register-page" className="content auth">
+             {hasError && (
+                <div>
+                    <div className="errorContainer">
+                         <p>{hasError}</p>
+                    </div>
+                </div>
+            )}
         <form id="register" method="POST" onSubmit={onSubmit}>
             <div className="container">
                 <h1>Register</h1>
