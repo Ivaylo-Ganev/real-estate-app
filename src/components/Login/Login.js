@@ -4,14 +4,23 @@ import { useForm } from "../../hooks/useForm";
 
 export const Login = () => {
 
-    const {onLoginSubmitHandler} = useContext(AuthContext);
+    const {onLoginSubmitHandler, hasError} = useContext(AuthContext);
     const {values, formErrors, onBlur, onSubmit, onChangeHandler} = useForm({
         email: '',
         password: ''
     }, onLoginSubmitHandler)
     
     return (
+        
         <section id="login-page" className="auth">
+            {hasError && (
+                <div>
+                    <div className="errorContainer">
+                         <p>{hasError}</p>
+                    </div>
+                </div>
+            )}
+            
         <form id="login" action="POST" onSubmit={onSubmit}>
 
             <div className="container">

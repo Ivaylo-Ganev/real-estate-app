@@ -10,16 +10,17 @@ export const AuthProvider = ({
     children
 }) => {
     const [auth, setAuth] = useLocalStorage("auth", {});
+    const [hasError, setHasError] = useState('');
     const navigate = useNavigate();
 
     const onLoginSubmitHandler = async (values) => {
         try {
             const result = await authService.login(values);
             setAuth(result);
-
+            setHasError('')
             navigate('/catalog');
         } catch (error) {
-            console.log(error.message) //TODO error handling
+            setHasError(error.message);
         }
     }
 
@@ -50,7 +51,8 @@ export const AuthProvider = ({
         userId: auth._id,
         userEmail: auth.email,
         token: auth.accessToken,
-        isAuthenticated: !!auth.accessToken
+        isAuthenticated: !!auth.accessToken,
+        hasError
     }
 
     return (
