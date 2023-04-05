@@ -16,6 +16,7 @@ import { EditProperty } from "./components/EditProperty/EditProperty";
 import { Logout } from "./components/Logout/Logout";
 import { RouteGuard } from "./components/RouteGuard/RouteGuard";
 import { FavouriteProperties } from "./components/FavouriteProperties/FavouriteProperties";
+import { PageNotFound } from "./components/PageNotFound/PageNotFound";
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
                     <Route path="/favourites" element={<FavouriteProperties />}/>
                     <Route path="/logout" element={<Logout />} />
                 </Route>
+                <Route path="*" element={<PageNotFound />} />
             </Routes>
             </main>
             <Footer />
