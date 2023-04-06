@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useCallback } from "react";
 import { useParams } from "react-router-dom";
 
 import * as propertyService from "../../services/propertyService";
@@ -19,6 +19,7 @@ export const EditProperty = () => {
         floor: '',
         description: ''
     }, onEditSubmitHandler);
+
     useEffect(()=> {
         propertyService.getOne(propertyId)
             .then(result => {

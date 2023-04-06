@@ -1,0 +1,32 @@
+.catalog-page {
+    background-color: transparent;
+    box-shadow: 0px 0px 0px 0px;
+    overflow: hidden;
+    border-radius: 0px;
+    padding: 20px;
+    height: auto;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.catalog-page>h1 {
+    color: #fff;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 48px;
+    font-weight: 700;
+    margin-top: 10px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.no-properties {
+    color: #fff;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 48px;
+    font-weight: 700;
+    margin-top: 150px;
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: 0 6px 4.8px rgba(0, 0, 0, 0.3);
+}

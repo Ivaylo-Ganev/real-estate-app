@@ -1,0 +1,11 @@
+.not-found {
+    position: absolute;
+    top: 40%;
+    left: 20%;
+    color: rgb(249, 244, 244);
+    z-index: 2;
+}
+.not-found h1 {
+    font-size: 50px;
+    margin-bottom: 30px;
+}

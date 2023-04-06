@@ -1,17 +1,18 @@
+import styles from './Properties.module.css';
 import { useContext } from "react";
 
 import { PropertyContext } from "../../contexts/PropertyContext";
 import { PropertyCard } from "./PropertyCard";
 
 export const Properties = () => {
-    const {properties, hasError} = useContext(PropertyContext);
+    const {properties} = useContext(PropertyContext);
 
     return (
-        <section id="catalog-page">
+        <section className={styles["catalog-page"]}>
            
             {properties.map(x => <PropertyCard key={x._id} {...x}/>)}
             
-            {properties.length === 0 && <h3 className="no-properties">No properties for sale</h3>}
+            {properties.length === 0 && <h3 className={styles["no-properties"]}>No properties for sale</h3>}
         </section>
     );
 };

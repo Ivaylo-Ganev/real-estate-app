@@ -1,7 +1,9 @@
+import styles from './PageNotFound.module.css';
+
 export const PageNotFound = () => {
 
     return (
-        <div className="not-found">
+        <div className={styles["not-found"]}>
             
             <h1>Page not found!</h1>
             

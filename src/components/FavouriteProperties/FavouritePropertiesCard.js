@@ -1,3 +1,4 @@
+import styles from './FavouritePropertiesCard.module.css';
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -25,7 +26,7 @@ export const FavouritePropertiesCard = ({
         }
     }
     return (
-        <div className="property">
+        <div className={styles["property"]}>
               {hasError && (
                 <div>
                     <div className="errorContainer">
@@ -33,7 +34,7 @@ export const FavouritePropertiesCard = ({
                     </div>
                 </div>
             )}
-                <div className="image-wrap">
+                <div className={styles["image-wrap"]}>
                     <img src={imageUrl} alt="property"/>
                 </div>
                 <h3>{propertyName}</h3>
@@ -41,14 +42,14 @@ export const FavouritePropertiesCard = ({
                 <h2>Price: € {price}</h2>
                 <h2>Size: {size} sq.m.</h2>
 
-                <div className="data-buttons">
-                    <button><Link to={`/catalog/${propertyId}`} className="btn details-btn">
+                <div className={styles["data-buttons"]}>
+                    <button><Link to={`/catalog/${propertyId}`} className={styles["details-btn"]}>
                         Details
                     </Link>
                     </button>
                 </div>
 
-                <button href="#" className="details-btn" onClick={onDeleteClick}>Remove</button>
+                <button href="#" className={styles["details-btn"]} onClick={onDeleteClick}>Remove</button>
             </div>
     );
 }

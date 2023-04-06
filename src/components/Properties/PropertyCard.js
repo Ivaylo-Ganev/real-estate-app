@@ -1,3 +1,4 @@
+import styles from './PropertyCard.module.css';
 import { Link } from "react-router-dom";
 
 export const PropertyCard = ({
@@ -10,8 +11,8 @@ export const PropertyCard = ({
 }) => {
 
     return (
-        <div className="property">
-                <div className="image-wrap">
+        <div className={styles["property"]}>
+                <div className={styles["image-wrap"]}>
                     <img src={imageUrl} alt="property"/>
                 </div>
                 <h3>{propertyName}</h3>
@@ -19,8 +20,8 @@ export const PropertyCard = ({
                 <h2>Price: € {price}</h2>
                 <h2>Size: {size} sq.m.</h2>
 
-                <div className="data-buttons">
-                    <button><Link to={`/catalog/${_id}`} className="btn details-btn">
+                <div className={styles["data-buttons"]}>
+                    <button><Link to={`/catalog/${_id}`} className={styles["details-btn"]}>
                         Details
                     </Link>
                     </button>
