@@ -1,3 +1,4 @@
+import styles from './Register.module.css';
 import { useContext } from "react";
 
 import { AuthContext } from "../../contexts/AuthContext";
@@ -12,7 +13,7 @@ export const Register = () => {
     }, onRegisterSubmitHandler)
 
     return (
-        <section id="register-page" className="content auth">
+        <section className={`${styles["register-page"]} ${styles["auth"]}`}>
              {hasError && (
                 <div>
                     <div className="errorContainer">
@@ -21,7 +22,7 @@ export const Register = () => {
                 </div>
             )}
         <form id="register" method="POST" onSubmit={onSubmit}>
-            <div className="container">
+            <div className={styles["container"]}>
                 <h1>Register</h1>
 
                 <label htmlFor="email">Email:</label>
@@ -60,9 +61,9 @@ export const Register = () => {
                  {formErrors['confirmPassword'] && (
                 <p className="form-error">{formErrors.confirmPassword}</p>
                 )}
-                <input className="btn submit" type="submit" value="Sign up"/>
+                <input className={`${styles["btn"]} ${styles["submit"]}`} type="submit" value="Sign up"/>
 
-                <p className="field">
+                <p className={styles["field"]}>
                     <span>If you already have a profile sign in <a href="/login">here</a></span>
                 </p>
             </div>

@@ -1,3 +1,4 @@
+import styles from './Login.module.css';
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useForm } from "../../hooks/useForm";
@@ -12,7 +13,7 @@ export const Login = () => {
     
     return (
         
-        <section id="login-page" className="auth">
+        <section className={`${styles["login-page"]} ${styles["auth"]}`} >
             {hasError && (
                 <div>
                     <div className="errorContainer">
@@ -23,7 +24,7 @@ export const Login = () => {
             
         <form id="login" action="POST" onSubmit={onSubmit}>
 
-            <div className="container">
+            <div className={styles["container"]}>
                 <h1>Login</h1>
                 <label htmlFor="email">Email:</label>
                 <input
@@ -50,8 +51,8 @@ export const Login = () => {
                 {formErrors['password'] && (
                 <p className="form-error">{formErrors.password}</p>
                 )}
-                <input type="submit" className="btn submit" value="Sign in"/>
-                <p className="field">
+                <input type="submit" className={`${styles["btn"]} ${styles["submit"]}`} value="Sign in"/>
+                <p className={styles["field"]}>
                     <span>If you don't have a profile sign up <a href="/register">here</a></span>
                 </p>
             </div>

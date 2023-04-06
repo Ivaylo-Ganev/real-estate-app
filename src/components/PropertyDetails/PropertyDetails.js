@@ -1,3 +1,4 @@
+import styles from './PropertyDetails.module.css';
 import { useEffect, useState, useContext } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import * as propertyService from "../../services/propertyService";
@@ -70,7 +71,7 @@ export const PropertyDetails = () => {
     }
 
     return (
-        <section id="property-details">
+        <section className={styles["property-details"]}>
              {hasError && (
                 <div>
                     <div className="errorContainer">
@@ -79,10 +80,10 @@ export const PropertyDetails = () => {
                 </div>
             )}
         <h1>Property Details</h1>
-        <div className="info-section">
+        <div className={styles["info-section"]}>
 
-            <div className="property-header">
-                <img className="property-img" src={property.imageUrl} alt="property"/>
+            <div className={styles["property-header"]}>
+                <img className={styles["property-img"]} src={property.imageUrl} alt="property"/>
                 <h1>{property.propertyName}</h1>
                
                 <h3>Location: {property.location}</h3>
@@ -93,27 +94,21 @@ export const PropertyDetails = () => {
 
             </div>
 
-            <p className="text">
+            <p className={styles["text"]}>
             {property.description}
             </p>
             {isOwner && (
-                 <div className="buttons">
-                 <button className="button"><Link to={`/catalog/${propertyId}/edit`}>Edit</Link></button>
-                 <button href="#" className="button" onClick={onDeleteClick}>Delete</button>
+                 <div className={styles["buttons"]}>
+                 <button className={styles["button"]}><Link to={`/catalog/${propertyId}/edit`}>Edit</Link></button>
+                 <button href="#" className={styles["button"]} onClick={onDeleteClick}>Delete</button>
              </div>
             )}
             {!isOwner && userId && !addedFavourite && (
-                <button href="#" className="button" onClick={onFavouritesClick}>Add to Favourites</button>
+                <button href="#" className={styles["button"]} onClick={onFavouritesClick}>Add to Favourites</button>
             )}   
               {!isOwner && userId && addedFavourite && (
-                <button href="#" className="button" onClick={onDeleteFavouritesClick}>Remove from Favourites</button>
+                <button href="#" className={styles["button"]} onClick={onDeleteFavouritesClick}>Remove from Favourites</button>
             )}   
-
-            {/* {!isOwner && userId && addedFavourite && (
-                <div>
-                <h1>This property has been added to your favourites.</h1>
-                </div>
-            )} */}
 
         </div>
         </section>

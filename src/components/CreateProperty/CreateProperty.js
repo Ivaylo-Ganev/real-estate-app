@@ -1,3 +1,4 @@
+import styles from './CreateProperty.module.css';
 import { useContext } from "react";
 
 import { useForm } from "../../hooks/useForm";
@@ -18,7 +19,7 @@ export const CreateProperty = () => {
     }, onCreateSubmitHandler);
 
     return (
-        <section id="create-page" className="auth">
+        <section className={`${styles["create-page"]} ${styles["auth"]}`} >
             {hasError && (
                 <div>
                     <div className="errorContainer">
@@ -26,8 +27,8 @@ export const CreateProperty = () => {
                     </div>
                 </div>
             )}
-        <form id="create" action="POST" onSubmit={onSubmit}>
-            <div className="container">
+        <form className="create" action="POST" onSubmit={onSubmit}>
+            <div className={styles["container"]}>
 
                 <h1>Create Property</h1>
                 <label htmlFor="propertyName">Property name:</label>
@@ -139,7 +140,7 @@ export const CreateProperty = () => {
                 {formErrors['description'] && (
                 <p className="form-error">{formErrors.description}</p>
                 )}
-                <input className="btn submit" type="submit" value="Create Property"/>
+                <input className={`${styles["btn"]} ${styles["submit"]}`} type="submit" value="Create Property"/>
             </div>
         </form>
     </section>

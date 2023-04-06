@@ -29,3 +29,146 @@
     -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
   }
+
+  body {
+    background-image: url('./../public/images/Obzor.JPG');
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+html {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: inherit;
+    line-height: 1.3;
+}
+
+h1,
+h2,
+h4,
+h5,
+h6 {
+    padding: 0.2em 1rem;
+}
+
+p,
+div {
+    margin: 0 0em 0.0em 0em;
+}
+
+ol,
+ul {
+    margin: 0em 1rem;
+}
+
+li {
+    list-style-position: inside;
+}
+
+button {
+    font-weight: bold;
+    padding: 0.2em;
+    margin: 0.2em;
+    border: 1px solid white;
+    border-radius: 0.3em;
+    background-color: transparent;
+}
+
+a {
+    margin: 0.2em;
+    text-decoration: none;
+    font-weight: bold;
+    color: inherit;
+}
+
+blockquote {
+    font-style: italic;
+    margin: 0.5em;
+}
+
+blockquote>cite {
+    display: block;
+    text-align: right;
+    margin: 0.5em 2em;
+    font-weight: bold;
+}
+
+
+.auth {
+    width: 100px;
+    margin: 8em auto;
+}
+
+header,
+footer {
+    background-color: #6e8297;
+    width: 100%;
+    overflow: hidden;
+    color: white;
+    z-index: 1;
+}
+
+header {
+    padding: 0.5em;
+    width: 100%;
+    left: 0;
+    top: 0;
+    position: fixed;
+}
+
+header h1 {
+    display: inline-block;
+    color: white;
+    margin-bottom: auto;
+}
+
+header nav {
+    font-size: auto;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    position: absolute;
+    right: 0;
+    bottom: 8px;
+}
+
+header nav>* {
+    float: left;
+}
+
+main {
+    margin-top: 73.375px;
+}
+
+footer {
+    padding: 1em;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+nav a {
+    margin: 0 0.5em;
+}
+
+nav a:hover {
+    cursor: pointer;
+    color: rgb(8, 19, 20);
+    font-weight: bolder;
+}
+
+#user,
+#guest {
+    margin: 0;
+    padding: 0;
+}

@@ -1,3 +1,4 @@
+import styles from './EditProperty.module.css';
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 
@@ -32,7 +33,7 @@ export const EditProperty = () => {
     }, [propertyId]);
 
     return (
-        <section id="edit-page" className="auth">
+        <section className={`${styles["edit-page"]} ${styles["auth"]}`}>
             {hasError && (
                 <div>
                     <div className="errorContainer">
@@ -48,7 +49,7 @@ export const EditProperty = () => {
                 </div>
             )}
         <form id="edit" method="POST" onSubmit={onSubmit}>
-            <div className="container">
+            <div className={styles["container"]}>
 
                 <h1>Edit Property</h1>
                 <label htmlFor="propertyName">Property name:</label>
@@ -162,7 +163,7 @@ export const EditProperty = () => {
                 <p className="form-error">{formErrors.description}</p>
                 )}
                 
-                <input className="btn submit" type="submit" value="Edit Property"/>
+                <input className={`${styles["btn"]} ${styles["submit"]}`} type="submit" value="Edit Property"/>
 
             </div>
         </form>
