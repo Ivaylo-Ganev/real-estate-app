@@ -49,16 +49,9 @@ export const PropertyDetails = () => {
     }
     const onFavouritesClick = async (e) => {
         e.preventDefault();
-        const favouriteData = {
-            propertyId,
-            imageUrl: property.imageUrl,
-            propertyName: property.propertyName,
-            location: property.location,
-            price: property.price,
-            size: property.size
-        }
+        
         try {
-            const newFavouriteProperty = await favouritesService.addToFavourites(favouriteData);
+            const newFavouriteProperty = await favouritesService.addToFavourites(propertyId);
             setAddedFavourite(true);
             setHasError('');
             setFavouriteProperty(newFavouriteProperty);
