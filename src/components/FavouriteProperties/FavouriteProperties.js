@@ -27,7 +27,7 @@ export const FavouriteProperties = () => {
                 setFavouriteProperties(result);
             })
             .catch(error => {
-                console.log(error.message);
+                console.log(error);
             })
     }, [userId]);
 

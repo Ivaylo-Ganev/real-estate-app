@@ -1,2 +1,4 @@
 # real-estate-app
-Softuni react project
+
+## Overview
+A single page application 

@@ -21,7 +21,7 @@ const requester = async (method, url, data) => {
     }
 
     const response = await fetch(url, options);
-    if (response.status === 204) {
+    if (response.status === 204 || response.status === 404) {
         return [];
     }
     const result = await response.json();

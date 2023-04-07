@@ -10,33 +10,34 @@ export const AuthProvider = ({
     children
 }) => {
     const [auth, setAuth] = useLocalStorage("auth", {});
-    const [hasError, setHasError] = useState('');
+    const [hasLoginError, setHasLoginError] = useState('');
+    const [hasRegisterError, setHasRegisterError] = useState('');
     const navigate = useNavigate();
 
     const onLoginSubmitHandler = async (values) => {
+        setHasLoginError('');
         try {
             const result = await authService.login(values);
             setAuth(result);
-            setHasError('');
             navigate('/catalog');
         } catch (error) {
-            setHasError(error.message);
+            setHasLoginError(error.message);
         }
     }
 
     const onRegisterSubmitHandler = async (values) => {
+        setHasRegisterError('');
         const {confirmPassword, ...registerValues} = values;
         if (confirmPassword !== registerValues.password) {
-            setHasError('Passwords do not match');
+            setHasRegisterError('Passwords do not match');
             return;
         }
         try {
             const result = await authService.register(registerValues);
             setAuth(result);
-            setHasError('');
             navigate('/catalog');
         } catch (error) {
-            setHasError(error.message);
+            setHasRegisterError(error.message);
         }
     }
 
@@ -53,7 +54,8 @@ export const AuthProvider = ({
         userEmail: auth.email,
         token: auth.accessToken,
         isAuthenticated: !!auth.accessToken,
-        hasError
+        hasRegisterError,
+        hasLoginError
     }
 
     return (

@@ -5,7 +5,7 @@ import { useForm } from "../../hooks/useForm";
 
 export const Login = () => {
 
-    const {onLoginSubmitHandler, hasError} = useContext(AuthContext);
+    const {onLoginSubmitHandler, hasLoginError} = useContext(AuthContext);
     const {values, formErrors, onBlur, onSubmit, onChangeHandler} = useForm({
         email: '',
         password: ''
@@ -14,10 +14,10 @@ export const Login = () => {
     return (
         
         <section className={`${styles["login-page"]} ${styles["auth"]}`} >
-            {hasError && (
+            {hasLoginError && (
                 <div>
                     <div className="errorContainer">
-                         <p>{hasError}</p>
+                         <p>{hasLoginError}</p>
                     </div>
                 </div>
             )}

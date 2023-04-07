@@ -57,76 +57,68 @@ export const DeleteProperty = () => {
                 <h1>Delete Property</h1>
                 <label htmlFor="propertyName">Property name:</label>
                 <input 
-                disabled
+                readOnly
                 type="text" 
                 id="propertyName" 
                 name="propertyName" 
                 value={values.propertyName}
-                readonly
                 />
                 <label htmlFor="location">Location:</label>
                 <input
-                disabled
+                readOnly
                 type="text"
                 id="location"
                 name="location"
                 value={values.location}
-                readonly
                 />
                 <label htmlFor="price">Price in EUR:</label>
                 <input
-                disabled
+                readOnly
                 type="number"
                 id="price"
                 name="price"
-                value={values.price}  
-                readonly  
+                value={values.price}    
                 />
                 <label htmlFor="property-img">Image:</label>
                 <input
-                disabled
+                readOnly
                 type="text"
                 id="imageUrl"
                 name="imageUrl"
                 value={values.imageUrl}
-                readonly
                 />
                 <label htmlFor="size">Size:</label>
                 <input
-                disabled
+                readOnly
                 type="number"
                 id="size"
                 name="size"
                 value={values.size} 
-                readonly
                 />
                 <label htmlFor="bedrooms">Number of bedrooms:</label>
                 <input
-                disabled
+                readOnly
                 type="number"
                 id="bedrooms"
                 name="bedrooms"
                 value={values.bedrooms}
-                readonly
                 />
                 
                 <label htmlFor="floor">Floor:</label>
                 <input
-                disabled
+                readOnly
                 type="number"
                 id="floor"
                 name="floor"
                 value={values.floor}
-                readonly
                 />
                 
                 <label htmlFor="description">Description:</label>
                 <textarea 
-                disabled
+                readOnly
                 name="description" 
                 id="description"
                 value={values.description}
-                readonly
                 >
                 </textarea>
                 <div className={styles["buttons"]}>

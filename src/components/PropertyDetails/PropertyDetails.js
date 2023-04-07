@@ -4,7 +4,6 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import * as propertyService from "../../services/propertyService";
 import * as favouritesService from "../../services/favouritesService";
 import { AuthContext } from "../../contexts/AuthContext";
-import { PropertyContext } from "../../contexts/PropertyContext";
 
 export const PropertyDetails = () => {
     const [property, setProperty] = useState({});
@@ -13,7 +12,7 @@ export const PropertyDetails = () => {
     const [hasError, setHasError] = useState('');
     const {propertyId} = useParams();
     const {userId} = useContext(AuthContext);
-    const navigate = useNavigate();
+
     useEffect(()=> {
         Promise.all([
             propertyService.getOne(propertyId),
