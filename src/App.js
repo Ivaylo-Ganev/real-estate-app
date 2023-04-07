@@ -36,10 +36,10 @@ function App() {
                 <Route element={<RouteGuard />}>
                     <Route path="/create" element={<CreateProperty />}/>
                     <Route path="/catalog/:propertyId/edit" element={<EditProperty />} />
+                    <Route path="/catalog/:propertyId/delete" element={<DeleteProperty />} />
                     <Route path="/favourites" element={<FavouriteProperties />}/>
                     <Route path="/logout" element={<Logout />} />
                 </Route>
-                <Route path="/catalog/:propertyId/delete" element={<DeleteProperty />} />
                 <Route path="*" element={<PageNotFound />} />
             </Routes>
             </main>
