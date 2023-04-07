@@ -44,7 +44,7 @@ export const PropertyProvider = ({
         }   
     }
     
-    const onPropertyDelete = (propertyId) => {
+    const onPropertyDeleteHandler = (propertyId) => {
         setProperties(state => state.filter(x => x._id !== propertyId));
     }
 
@@ -52,7 +52,7 @@ export const PropertyProvider = ({
         properties,
         onCreateSubmitHandler,
         onEditSubmitHandler,
-        onPropertyDelete,
+        onPropertyDeleteHandler,
         hasError
     }
 

@@ -17,6 +17,7 @@ import { Logout } from "./components/Logout/Logout";
 import { RouteGuard } from "./components/RouteGuard/RouteGuard";
 import { FavouriteProperties } from "./components/FavouriteProperties/FavouriteProperties";
 import { PageNotFound } from "./components/PageNotFound/PageNotFound";
+import { DeleteProperty } from "./components/DeleteProperty/DeleteProperty";
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
                     <Route path="/favourites" element={<FavouriteProperties />}/>
                     <Route path="/logout" element={<Logout />} />
                 </Route>
+                <Route path="/catalog/:propertyId/delete" element={<DeleteProperty />} />
                 <Route path="*" element={<PageNotFound />} />
             </Routes>
             </main>

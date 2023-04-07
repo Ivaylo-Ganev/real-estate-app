@@ -13,7 +13,6 @@ export const PropertyDetails = () => {
     const [hasError, setHasError] = useState('');
     const {propertyId} = useParams();
     const {userId} = useContext(AuthContext);
-    const {onPropertyDelete} = useContext(PropertyContext);
     const navigate = useNavigate();
     useEffect(()=> {
         Promise.all([
@@ -34,20 +33,6 @@ export const PropertyDetails = () => {
     }, [propertyId, userId]);
     const isOwner = userId === property._ownerId;
 
-    const onDeleteClick = async () => {
-                // eslint-disable-next-line no-restricted-globals
-        const result = confirm("Are you sure you want to delete this property?");
-        if (result) {
-            try {
-                await propertyService.deleteProperty(propertyId);
-                setHasError('');
-                onPropertyDelete(propertyId);
-                navigate('/catalog');
-            } catch (error) {
-                setHasError(error.message);
-            }  
-        }
-    }
     const onFavouritesClick = async (e) => {
         e.preventDefault();
         
@@ -100,7 +85,7 @@ export const PropertyDetails = () => {
             {isOwner && (
                  <div className={styles["buttons"]}>
                  <button className={styles["button"]}><Link to={`/catalog/${propertyId}/edit`}>Edit</Link></button>
-                 <button href="#" className={styles["button"]} onClick={onDeleteClick}>Delete</button>
+                 <button className={styles["button"]}><Link to={`/catalog/${propertyId}/delete`}>Delete</Link></button>
              </div>
             )}
             {!isOwner && userId && !addedFavourite && (
