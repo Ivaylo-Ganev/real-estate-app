@@ -33,7 +33,7 @@ export const FavouriteProperties = () => {
 
     return (
         <section className={styles["catalog-page"]}>
-           
+            <h1>Favourite properties</h1>
             {favouriteProperties.map(x => {
                 return <PropertyCard key={x._id} {...x} />
             })}  

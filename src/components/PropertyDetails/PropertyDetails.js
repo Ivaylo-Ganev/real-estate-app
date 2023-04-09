@@ -27,7 +27,7 @@ export const PropertyDetails = () => {
                 }
             })
             .catch(error => {
-                console.log(error.message);
+                setHasError(error.message);
             })
     }, [propertyId, userId]);
     const isOwner = userId === property._ownerId;

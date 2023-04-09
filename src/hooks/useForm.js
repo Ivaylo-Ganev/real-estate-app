@@ -66,11 +66,11 @@ export const useForm = (initialValues, onSubmitHandler) => {
         } else if (currentName === 'floor' && Number(currentValue) >= 0) {
             setFormErrors(state => ({...state, [currentName]: ''}));
         }
-        if (currentName === 'description' && currentValue.length > 50) {
-            setFormErrors(state => ({...state, [currentName]: "Description should be maximum 50 symbols"}));
+        if (currentName === 'description' && currentValue.length > 150) {
+            setFormErrors(state => ({...state, [currentName]: "Description should be maximum 150 symbols"}));
         } else if (currentName === 'description' && currentValue.length < 10) {
             setFormErrors(state => ({...state, [currentName]: "Description should be minimum 10 symbols"}));
-        } else if (currentName === 'description' && currentValue.length <= 50) {
+        } else if (currentName === 'description' && currentValue.length <= 150) {
             setFormErrors(state => ({...state, [currentName]: ''}));
         }
         if (currentName === 'email' && currentValue.length === 0) {
